@@ -21,6 +21,8 @@ function fetchData() {
             }, {years: [], temps: [], tempN: [], tempS: []});
             // const years = parsedData.map(entry => entry.Year);
             // const temps = parsedData.map(entry => Number(entry.Glob) + GLOBAL_MEAN_TEMPERATURE);
+            // const tempN = parsedData.map(entry => Number(entry.Glob) + GLOBAL_MEAN_TEMPERATURE);
+            // const tempS = parsedData.map(entry => Number(entry.Glob) + GLOBAL_MEAN_TEMPERATURE);
             
             new Chart(ctx, {
     type: 'line',
@@ -52,20 +54,20 @@ function fetchData() {
     },
     options: {
         scales: {
-            y: {
+            yAxes: [{
                 ticks: {
-                    callback(value) {
-                        return value + '°';
+                    callback: function (value) {
+                        return value + "°";
                     }
                 }
-            }
-            // x: {
-            //     ticks: {
-            //         callback(value) {
-            //             return value + 'years';
-            //         }
-            //     }
-            // }
+            }],
+            xAxes: [{
+                ticks: {
+                    callback(index) {
+                        return index + ' year';
+                    }
+                }
+            }]
         }
     }
 });
